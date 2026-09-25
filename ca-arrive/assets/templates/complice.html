@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark">
+<title>{{OBJET}}</title>
+<!-- Gabarit « complice » du skill ca-arrive. Tables et styles en ligne pour les messageries,
+     aucun script, aucune image externe. Les marqueurs {{...}} et les blocs entre commentaires
+     sont remplis par preparer_mot.py. -->
+<style>
+  body, table, td { -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; }
+  body { margin:0 !important; padding:0 !important; width:100% !important; }
+  @media only screen and (max-width:620px) {
+    .conteneur { width:100% !important; }
+    .marge { padding-left:22px !important; padding-right:22px !important; }
+    .titre { font-size:28px !important; line-height:34px !important; }
+  }
+  @media (prefers-color-scheme: dark) {
+    .fond-page { background:#1B1512 !important; }
+    .fond-carte { background:#26201B !important;  }
+    .fond-bloc { background:#302720 !important; }
+    .encre { color:#F6ECE3 !important; }
+    .doux { color:#D6C3B4 !important; }
+    .accent { color:#FF9C6E !important; }
+    .etiquette { background:#4A3122 !important; color:#FFC4A3 !important; }
+    .filet { border-color:#8A6E58 !important; }
+  }
+  [data-ogsc] .encre { color:#F6ECE3 !important; }
+  [data-ogsc] .doux { color:#D6C3B4 !important; }
+  [data-ogsc] .accent { color:#FF9C6E !important; }
+</style>
+</head>
+<body class="fond-page" style="margin:0; padding:0; background:#FDEBD9;">
+<div style="display:none; max-height:0; overflow:hidden; opacity:0; mso-hide:all;">{{APERCU}}&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="fond-page" bgcolor="#FDEBD9" style="background:#FDEBD9;">
+<tr><td align="center" style="padding:16px 4px;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="conteneur fond-carte" bgcolor="#FFFBF6" style="max-width:600px; background:#FFFBF6; border-radius:18px; border:0;">
+
+<tr><td class="marge" style="padding:38px 22px 8px 22px;">
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+    <td class="etiquette" bgcolor="#FAD6BD" style="background:#FAD6BD; color:#8F3712; font-family:'Trebuchet MS',Arial,Helvetica,sans-serif; font-size:13px; line-height:18px; font-weight:bold; letter-spacing:0.2px; text-transform:none; padding:6px 14px; border-radius:999px;">Info de service</td>
+  </tr></table>
+</td></tr>
+<tr><td class="marge encre titre" style="padding:14px 22px 6px 22px; font-family:'Trebuchet MS',Arial,Helvetica,sans-serif; font-size:32px; line-height:38px; font-weight:bold; text-transform:none; color:#2F2621;">{{TITRE}}</td></tr>
+<tr><td class="marge encre" style="padding:18px 22px 0 22px; font-family:'Trebuchet MS',Arial,Helvetica,sans-serif; font-size:17px; line-height:26px; color:#2F2621;">{{SALUTATION}}</td></tr>
+<tr><td class="marge encre" style="padding:12px 22px 0 22px; font-family:'Trebuchet MS',Arial,Helvetica,sans-serif; font-size:17px; line-height:26px; color:#2F2621;">{{ANNONCE}}<!--OUVERTURE--> {{OUVERTURE}}<!--/OUVERTURE--></td></tr>
+<!--CHECKLIST-->
+<tr><td class="marge" style="padding:24px 22px 0 22px;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="fond-bloc filet" bgcolor="#FFF1E3" style="background:#FFF1E3; border-radius:14px; border:0;">
+  <tr><td class="accent" style="padding:22px 20px 4px 20px; font-family:'Trebuchet MS',Arial,Helvetica,sans-serif; font-size:20px; line-height:26px; font-weight:bold; color:#B8471C;">Ta mission, si&nbsp;tu&nbsp;l'acceptes</td></tr>
+  <tr><td class="doux" style="padding:2px 20px 4px 20px; font-family:'Trebuchet MS',Arial,Helvetica,sans-serif; font-size:15px; line-height:22px; color:#6B5A4E;">Coche au fur et à mesure, je vérifierai (un&nbsp;peu).</td></tr>
+<!--CASES-->
+  <tr><td style="padding:8px 20px 0 20px;">
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+      <td valign="top" class="accent" style="width:26px; font-family:Arial,Helvetica,sans-serif; font-size:21px; line-height:25px; color:#B8471C;">&#9744;</td>
+      <td valign="top" class="encre" style="font-family:'Trebuchet MS',Arial,Helvetica,sans-serif; font-size:17px; line-height:25px; color:#2F2621;">{{CASE}}</td>
+    </tr></table>
+  </td></tr>
+<!--/CASES-->
+  <tr><td style="font-size:0; line-height:0; height:20px;">&nbsp;</td></tr>
+  </table>
+</td></tr>
+<!--/CHECKLIST-->
+<!--MOTS_INTERDITS-->
+<tr><td class="marge" style="padding:22px 22px 0 22px;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="filet" style="border:2px dashed #BD7F50; border-radius:14px;">
+  <tr><td class="accent" style="padding:20px 18px 4px 18px; font-family:'Trebuchet MS',Arial,Helvetica,sans-serif; font-size:20px; line-height:26px; font-weight:bold; color:#B8471C;">Mots interdits cette&nbsp;semaine</td></tr>
+<!--MOT-->
+  <tr><td style="padding:8px 18px 0 18px;">
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+      <td valign="top" class="accent" style="width:26px; font-family:Arial,Helvetica,sans-serif; font-size:17px; line-height:25px; font-weight:bold; color:#B8471C;">&#10005;</td>
+      <td valign="top" class="encre" style="font-family:'Trebuchet MS',Arial,Helvetica,sans-serif; font-size:17px; line-height:25px; font-style:italic; color:#2F2621;">{{MOT}}</td>
+    </tr></table>
+  </td></tr>
+<!--/MOT-->
+<!--APRES_MOTS-->
+  <tr><td class="doux" style="padding:14px 18px 0 18px; font-family:'Trebuchet MS',Arial,Helvetica,sans-serif; font-size:15px; line-height:22px; color:#6B5A4E;">{{APRES_MOTS}}</td></tr>
+<!--/APRES_MOTS-->
+  <tr><td style="font-size:0; line-height:0; height:20px;">&nbsp;</td></tr>
+  </table>
+</td></tr>
+<!--/MOTS_INTERDITS-->
+<!--MOT_PERSO-->
+<tr><td class="marge encre" style="padding:24px 22px 0 22px; font-family:'Trebuchet MS',Arial,Helvetica,sans-serif; font-size:17px; line-height:26px; color:#2F2621;">{{MOT_PERSO}}</td></tr>
+<!--/MOT_PERSO-->
+<tr><td class="marge encre" style="padding:26px 22px 40px 22px; font-family:'Trebuchet MS',Arial,Helvetica,sans-serif; font-size:17px; line-height:26px; color:#2F2621;"><!--MERCI--><table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td class="encre" style="padding:0 0 14px 0; font-family:'Trebuchet MS',Arial,Helvetica,sans-serif; font-size:17px; line-height:26px; color:#2F2621;">{{MERCI}}</td></tr></table><!--/MERCI--><!--FIN-->{{FIN}}<br><!--/FIN--><span class="accent" style="font-family:'Trebuchet MS',Arial,Helvetica,sans-serif; font-size:20px; font-weight:bold; color:#B8471C;">{{SIGNATURE}}</span></td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

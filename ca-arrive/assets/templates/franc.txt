@@ -1,0 +1,19 @@
+{{OBJET}}
+
+{{SALUTATION}}
+
+{{ANNONCE}}<!--OUVERTURE--> {{OUVERTURE}}<!--/OUVERTURE-->
+
+<!--CHECKLIST-->CE QUI M'AIDERAIT
+<!--CASES-->[ ] {{CASE}}
+<!--/CASES-->
+<!--/CHECKLIST--><!--MOTS_INTERDITS-->
+MOTS INTERDITS CETTE SEMAINE
+<!--MOT-->x {{MOT}}
+<!--/MOT--><!--APRES_MOTS-->{{APRES_MOTS}}
+<!--/APRES_MOTS-->
+<!--/MOTS_INTERDITS--><!--MOT_PERSO-->{{MOT_PERSO}}
+
+<!--/MOT_PERSO--><!--MERCI-->{{MERCI}}
+<!--/MERCI--><!--FIN-->{{FIN}}
+<!--/FIN-->{{SIGNATURE}}

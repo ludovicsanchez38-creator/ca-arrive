@@ -1,0 +1,30 @@
+{
+  "douceur": {
+    "ouverture": "Je vais sûrement manquer d'énergie et avoir la larme facile. Si je pleure, pas besoin de chercher pourquoi : prends-moi dans tes bras.",
+    "apres_mots": "Je sais que tu ne les dirais pas, je les écris juste pour qu'on en sourie.",
+    "merci": "Merci d'être là.",
+    "fin": "Je t'aime,",
+    "apercu": "Un petit bulletin intérieur, avec ce qui me ferait du bien."
+  },
+  "complice": {
+    "ouverture": "Si je suis à cran, ça ne te vise pas, promis.",
+    "apres_mots": "Toute infraction se règle en carrés de chocolat. Du bon.",
+    "merci": "Merci d'avance, je te revaudrai ça.",
+    "fin": "Bisous,",
+    "apercu": "Info de service, et ta mission, si tu l'acceptes."
+  },
+  "franc": {
+    "ouverture": "Je te préviens maintenant pour qu'on s'organise tranquillement. Si je m'agace, ce que je dis reste valable, même quand le ton monte plus vite que d'habitude.",
+    "apres_mots": "Je préfère te les écrire tout de suite plutôt que de te les rappeler plus tard.",
+    "merci": "Merci d'avance.",
+    "fin": "",
+    "apercu": "Pour info, avec ce qui m'aiderait."
+  },
+  "cash": {
+    "ouverture": "Si je m'énerve contre toi, garde en tête que j'ai peut-être raison : on en reparle à froid quelques jours plus tard.",
+    "apres_mots": "Chaque infraction sera notée, et ressortie au meilleur moment.",
+    "merci": "Merci. Vraiment.",
+    "fin": "",
+    "apercu": "Ceci n'est pas un exercice."
+  }
+}
