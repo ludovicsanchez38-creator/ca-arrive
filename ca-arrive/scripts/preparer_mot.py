@@ -8,7 +8,8 @@ valeurs.json (UTF-8) :
   {
     "prenom": "Alex",                          # prénom ou surnom de la personne
     "salutation": "Mon cœur,",                 # facultatif : sinon, formule de l'ambiance
-    "annonce": "Mes règles arrivent vers mardi.",
+    "annonce": "Mes règles arrivent vers mardi.",  # ou, à la place : "annonce_debut" (« Ça arrive »,
+                                               # « Mes règles arrivent »...) et "annonce_moment" (« bientôt »)
     "cases": ["La bouillotte sortie du placard", "..."],
     "mots_interdits": ["« Calme-toi. »"],      # liste vide : la rubrique disparaît
     "mot_perso": "",                           # facultatif : une phrase à vous
@@ -21,9 +22,12 @@ valeurs.json (UTF-8) :
     "apercu": "..."                            # texte à la place (apercu : texte d'aperçu du .eml).
   }
 
-Produit dans <dossier> : mot-<ambiance>.html (à ouvrir dans le navigateur puis copier-coller
-dans un nouveau message), mot-<ambiance>.txt (version texte, pour un SMS ou une messagerie
-sans mise en forme) et, avec --eml, mot-<ambiance>.eml (brouillon à ouvrir, selon les logiciels).
+Produit dans <dossier> : mot-<ambiance>.html (le mail mis en page, styles en ligne, dont le <title>
+est l'objet), mot-<ambiance>.txt (version texte, pour un SMS ou une messagerie sans mise en forme)
+et, avec --eml, mot-<ambiance>.eml (brouillon à ouvrir, selon les logiciels). Affiche enfin un lien
+mailto: sans destinataire (objet et version texte), pour le téléphone, ou « trop_long » s'il
+dépasse 1 800 caractères. Pour ouvrir le brouillon mis en page sur l'ordinateur :
+scripts/ouvrir_brouillon.py.
 Aucune adresse n'est écrite nulle part : c'est vous qui choisissez à qui l'écrire et qui envoyez.
 Bibliothèque standard seulement (Python 3.8 ou plus récent).
 """
@@ -38,6 +42,7 @@ import re
 import sys
 from email.message import EmailMessage
 from pathlib import Path
+from urllib.parse import quote
 
 GABARITS = Path(__file__).resolve().parents[1] / "assets" / "templates"
 AMBIANCES = ("douceur", "complice", "franc", "cash")
@@ -45,6 +50,11 @@ OBJET_DEFAUT = "Ça arrive. Prépare-toi."
 SALUTATIONS = {"douceur": "Mon cœur,", "complice": "Salut {p},", "franc": "{p},", "cash": "{p}."}
 PHRASES = ("ouverture", "apres_mots", "merci", "fin", "apercu")
 NEANT = {"", "aucun", "aucune", "par defaut", "par défaut"}
+# Un lien mailto: plus long se coupe dans certaines messageries : au-delà, le copier-coller prend le relais.
+LIMITE_LIEN = 1800
+# Laissés tels quels dans le lien (RFC 6068) ; tout le reste est encodé en UTF-8, y compris « + », que
+# certaines messageries lisent comme une espace, et les parenthèses, qui couperaient un lien Markdown.
+SURS_MAILTO = ",;:@!"
 # Les accolades saisies par l'utilisatrice sont mises de côté pendant le remplissage, pour qu'aucune
 # valeur ne soit prise pour un marqueur du gabarit, puis rendues à la fin.
 PROTEGE = str.maketrans({"{": "", "}": ""})
@@ -101,6 +111,53 @@ def phrases_de(ambiance: str, v: dict) -> dict[str, str]:
     return phrases
 
 
+def lien_mailto(objet: str, corps: str) -> str:
+    """Lien mailto: sans destinataire, qui ouvre le mail tout prêt (objet et corps en texte).
+
+    Objet et corps sont encodés en UTF-8, les espaces en %20 et les sauts de ligne en %0D%0A, comme le
+    demande la RFC 6068 : accents, guillemets français et retours à la ligne arrivent intacts.
+    """
+    corps = corps.replace("\r\n", "\n").replace("\r", "\n").strip("\n").replace("\n", "\r\n")
+    return "mailto:?subject=" + quote(objet.strip(), safe=SURS_MAILTO) + "&body=" + quote(corps, safe=SURS_MAILTO)
+
+
+def annonce_de(v: dict) -> str:
+    """L'annonce telle quelle, ou bâtie : « Ça arrive » + « bientôt » + point."""
+    annonce = _texte(v.get("annonce"))
+    if annonce:
+        return annonce
+    debut, moment = _texte(v.get("annonce_debut")), _texte(v.get("annonce_moment"))
+    if not debut:
+        return ""
+    if not moment:
+        return debut if re.search(r"[.!?…]$", debut) else debut + "."
+    return re.sub(r"[\s.]+$", "", debut) + " " + moment + "."
+
+
+def ecrire_eml(chemin: Path, objet: str, texte: str, page: str) -> Path:
+    """Brouillon .eml sans destinataire : version texte et version mise en page, marqué « non envoyé ».
+
+    L'en-tête X-Unsent demande l'ouverture en brouillon modifiable : Outlook le respecte, d'autres
+    messageries ouvrent le fichier comme un message reçu.
+    """
+    message = EmailMessage()
+    message["Subject"] = objet
+    message["X-Unsent"] = "1"
+    message.set_content(texte)
+    message.add_alternative(page, subtype="html")
+    # Lisible par son seul compte, quel que soit le masque de création du processus qui l'appelle.
+    with os.fdopen(os.open(chemin, os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600), "wb") as fichier:
+        fichier.write(message.as_bytes())
+    os.chmod(chemin, 0o600)
+    return chemin
+
+
+def corps_du_mail(texte: str, objet: str) -> str:
+    """La version texte sans sa première ligne quand c'est l'objet, déjà porté par le lien."""
+    premiere, _, reste = texte.lstrip("\n").partition("\n")
+    return reste.strip("\n") if premiere.strip() == objet.strip() else texte.strip("\n")
+
+
 def remplir(modele: str, v: dict, ambiance: str, en_html: bool) -> str:
     if en_html:
         def preparer(s: str) -> str:
@@ -141,7 +198,7 @@ def remplir(modele: str, v: dict, ambiance: str, en_html: bool) -> str:
         "TITRE": titre,
         "OBJET": preparer(objet),
         "SALUTATION": preparer(salutation),
-        "ANNONCE": preparer(_texte(v.get("annonce"))),
+        "ANNONCE": preparer(annonce_de(v)),
         "SIGNATURE": preparer(_texte(v.get("signature"))),
         "APERCU": preparer(phrases["apercu"]),
     }
@@ -169,7 +226,9 @@ def main(argv: list[str] | None = None) -> int:
     if not isinstance(valeurs, dict):
         print("valeurs_illisibles: un objet JSON entre accolades est attendu")
         return 1
-    manquants = [c for c in ("annonce", "signature") if not _texte(valeurs.get(c))]
+    manquants = [c for c in ("signature",) if not _texte(valeurs.get(c))]
+    if not annonce_de(valeurs):
+        manquants.insert(0, "annonce")
     if not _texte(valeurs.get("salutation")) and not _texte(valeurs.get("prenom")) and args.ambiance != "douceur":
         manquants.append("prenom")
     if manquants:
@@ -188,14 +247,12 @@ def main(argv: list[str] | None = None) -> int:
     base.with_suffix(".txt").write_text(texte, encoding="utf-8")
     print(f"html: {base.with_suffix('.html')}")
     print(f"texte: {base.with_suffix('.txt')}")
+    objet = _texte(valeurs.get("objet")) or OBJET_DEFAUT
+    lien = lien_mailto(objet, corps_du_mail(texte, objet))
+    print(f"longueur_lien: {len(lien)} (limite {LIMITE_LIEN})")
+    print(f"lien_envoi: {lien if len(lien) <= LIMITE_LIEN else 'trop_long'}")
     if args.eml:
-        message = EmailMessage()
-        message["Subject"] = _texte(valeurs.get("objet")) or OBJET_DEFAUT
-        message["X-Unsent"] = "1"  # demande d'ouverture en brouillon, respectée par certains logiciels seulement
-        message.set_content(texte)
-        message.add_alternative(page, subtype="html")
-        base.with_suffix(".eml").write_bytes(message.as_bytes())
-        print(f"eml: {base.with_suffix('.eml')}")
+        print(f"eml: {ecrire_eml(base.with_suffix('.eml'), objet, texte, page)}")
     return 0
 
 

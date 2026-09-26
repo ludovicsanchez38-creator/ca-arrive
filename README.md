@@ -85,9 +85,12 @@ skill s'ajoute à cet agent.
 | OpenClaw | `~/.agents/skills/` | `$ca-arrive` |
 | Un autre agent | consultez la documentation de votre agent | « Utilise le skill ca-arrive » |
 
-Une version de travail (1.1) a été testée en conditions réelles sous Codex le 25/09/2026 ; la 1.2 en
-corrige les défauts et ajoute des réglages qui n'ont pas encore été testés dans un agent. Pour les
-autres agents, le skill suit leur documentation officielle. Le détail, agent
+Une version de travail (1.1) a été testée en conditions réelles sous Codex le 25/09/2026, et la 1.2
+dans l'app Claude le même jour ; la 1.4 en tire une conversation plus courte et le brouillon mis en
+page qui s'ouvre sur l'ordinateur. Essayée sur un vrai Mac le 26/09/2026, elle ouvrait bien le
+brouillon dans Mail, mais seulement par la voie de secours quand Safari était fermé : la 1.5 lance
+Safari elle-même. Pas encore testé sous Windows. Pour les autres agents, le skill suit leur
+documentation officielle. Le détail, agent
 par agent, est dans [`ca-arrive/INSTALL.md`](ca-arrive/INSTALL.md). Python 3 est conseillé ; sans
 lui, la saisie et la capture fonctionnent quand même.
 

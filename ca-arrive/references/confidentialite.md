@@ -21,6 +21,23 @@ pas vérifié est écrit comme tel : dans ce cas, dis-le et renvoie à la docume
   effacer » n'atteint pas.
 - Si tu cherches sur le web, tes requêtes ne contiennent jamais ses dates, son prénom ni rien qui la
   concerne.
+- **Le brouillon mis en page** (sur son ordinateur, `scripts/ouvrir_brouillon.py`) ne passe par
+  aucun serveur tant qu'elle ne l'envoie pas. Sur Mac, Safari ouvre le fichier du mot, sans appel
+  réseau (le gabarit n'a ni image ni ressource externe), et le garde dans son historique, avec son
+  titre « Ça arrive. Prépare-toi. » ; Mail reçoit la page comme au bouton Partager, format « Page
+  web » (aide d'Apple : https://support.apple.com/fr-fr/guide/safari/sfri40722/mac et
+  https://support.apple.com/en-euro/guide/mail/mail40723/16.0/mac/15.0, lues le 25/09/2026). La
+  commande AppleScript de Safari qui fait ce geste (`email contents`) n'est décrite que par des
+  échanges d'utilisateurs (https://discussions.apple.com/thread/200240, 2005, et
+  https://www.macscripter.net/t/safari-and-mail/49024, 2007) : non vérifié sur le Safari actuel,
+  d'où le repli. En repli, le mot passe par le presse-papiers, où il reste jusqu'à la copie
+  suivante (un gestionnaire d'historique du presse-papiers peut le garder plus longtemps). Sous
+  Windows et Linux, un fichier `.eml` est écrit dans `~/.ca-arrive/mots/`, effacé avec les autres.
+  Si elle enregistre le brouillon, il rejoint le dossier Brouillons de son compte de messagerie,
+  sur le serveur de ce compte, comme tout brouillon (et, selon le compte, sur ses autres appareils).
+- **Sur téléphone ou dans une session en ligne**, le lien vers Mail et le texte du mot font partie
+  de la conversation avec l'agent, comme tout ce qu'elle y écrit. Le fichier `.html` n'est jamais
+  joint à la conversation ni publié.
 
 ### Le test de persistance (environnement inconnu, bac à sable, cloud)
 
@@ -156,12 +173,12 @@ https://code.claude.com/docs/en/skills (section sur Cowork)
   cloud (en bêta), sur les serveurs d'Anthropic, et ses sessions et fichiers sont alors enregistrés
   sur le compte Claude ; le mode local, qui reste disponible pour les installations de bureau
   existantes, fait tourner le code dans une machine virtuelle de l'ordinateur et garde l'historique
-  sur l'ordinateur. Dis-lui donc avant toute date que, sous Cowork dans le cloud, `~/.ca-arrive` ne
-  serait pas sur son ordinateur : chaque session y tourne dans un bac à sable temporaire, détruit à
-  la fin de la session, et ce qui est gardé l'est sur son compte Claude. En local, le code tourne
-  dans la machine virtuelle de Cowork. Dans les deux cas, le test de persistance dit si le fichier
-  survit d'une session à l'autre, pas où il se trouve : fais-le avant toute date, et laisse-la
-  décider.
+  sur l'ordinateur. Dans le cloud, chaque session tourne dans un bac à sable temporaire, détruit à la
+  fin de la session, et ce qui est gardé l'est sur son compte Claude : c'est « le cas du cloud » de
+  `SKILL.md`, où le mot se prépare sur le moment, sans date ni suivi, ce que tu lui dis dès la
+  présentation. En local, le code tourne dans la machine virtuelle de Cowork : le test de
+  persistance dit si le fichier survit d'une session à l'autre, pas où il se trouve ; fais-le avant
+  toute date, et laisse-la décider.
 - **Mémoire de Claude** : dans le cloud, Cowork partage la mémoire de Claude avec le chat. Par
   défaut, Claude ne mémorise pas les sujets de santé, sauf si « Include sensitive topics in memory »
   est activé dans Settings > Memory. Propose-lui de vérifier ce réglage, ou de mettre la mémoire en

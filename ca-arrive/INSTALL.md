@@ -83,9 +83,11 @@ téléversez `ca-arrive.zip` tel quel. L'exécution de code doit être activée.
 « Utilise le skill ca-arrive ». Attention : d'après l'aide de Claude, une session Cowork tourne par
 défaut dans le cloud (en bêta), et ses fichiers sont alors enregistrés sur votre compte Claude ; le
 mode local, qui reste disponible pour les installations de bureau existantes, fait tourner le code
-dans une machine virtuelle de votre ordinateur. Dans le premier cas, vos dates seraient stockées sur
-votre compte Claude, et non sur votre ordinateur : le skill vous le dit avant d'écrire la moindre
-date, et c'est à vous de décider.
+dans une machine virtuelle de votre ordinateur. Dans le premier cas, le skill ne garde rien d'une
+session à l'autre : il vous le dit dès le début, prépare le mot sur le moment et ne note aucune date.
+Le mail part alors en version texte ; la version mise en page s'ouvre avec un agent qui tourne sur
+votre ordinateur.
+Le suivi mois après mois demande un agent installé sur votre ordinateur (Claude Code, Codex...).
 Sources : https://support.claude.com/en/articles/12512180-use-skills-in-claude,
 https://support.claude.com/en/articles/12512198-how-to-create-custom-skills,
 https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork,
@@ -130,7 +132,23 @@ Le skill vous dira franchement ce qu'il ne sait pas de votre agent.
 ## Python (conseillé)
 
 `python3 --version` doit répondre. Sans Python, la saisie et la capture fonctionnent quand même ;
-l'option « export » de votre appli n'est alors pas disponible.
+l'option « export » de votre appli n'est alors pas disponible, et le brouillon mis en page ne s'ouvre
+pas tout seul (`references/sans-python.md` dit comment l'ouvrir à la main).
+
+## Le brouillon mis en page, sur votre ordinateur
+
+Quand l'agent tourne sur votre ordinateur, le script `scripts/ouvrir_brouillon.py` ouvre un nouveau
+message déjà mis en page, sans destinataire. Il n'envoie rien.
+
+- **Mac** : il faut Safari et Mail, avec un compte configuré dans Mail. La première fois, macOS vous
+  demande d'autoriser l'application de votre agent (Terminal, par exemple) à piloter Safari, puis
+  Mail : acceptez. Si vous avez refusé, le réglage se retrouve dans Réglages Système >
+  Confidentialité et sécurité > Automatisation. Safari garde la page du mot dans son historique :
+  effacez-la de l'historique si vous le souhaitez.
+- **Windows** : le brouillon est un fichier `.eml`, ouvert avec votre messagerie par défaut. Outlook
+  l'ouvre en brouillon modifiable ; d'autres messageries l'ouvrent comme un message reçu, et votre
+  agent vous donne alors la version texte.
+- **Linux** : le même `.eml`, ouvert par `xdg-open`, selon votre messagerie.
 
 ## Si le skill n'apparaît pas
 

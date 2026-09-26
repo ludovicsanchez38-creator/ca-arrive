@@ -2,23 +2,27 @@
 
 ## Ce qu'il fait
 
-Quelques jours avant vos règles, quand vous le lancez, votre agent vous prépare un mot pour la
-personne qui partage votre vie, votre conjoint ou votre conjointe. Vous le relisez, vous le
-retouchez, et vous l'envoyez vous-même. Le mot est écrit à la première personne et signé de votre
-nom, avec vos mots.
+Quand vos règles approchent, votre agent vous prépare un mot pour la personne qui partage votre
+vie, votre conjoint ou votre conjointe. Il vous pose une question de sécurité et deux questions (son
+prénom, votre signature), puis ouvre dans votre messagerie un nouveau mail déjà mis en page, aux
+couleurs de l'ambiance choisie. Vous ajoutez l'adresse, vous relisez (tout se retouche dans le
+brouillon), et vous l'envoyez vous-même. Sur téléphone ou dans une session en ligne, le mail part en
+version texte, qui s'ouvre d'un toucher dans votre messagerie. Le mot est écrit à la première
+personne et signé de votre nom, avec vos mots. Les questions arrivent une à la fois, avec des
+réponses à choix : un toucher ou un chiffre suffit.
 
-Le skill ne tourne pas en arrière-plan : il estime la date de vos prochaines règles, vous dit à
-partir de quel jour le mot sera prêt, et vous le relancez ce jour-là (un rappel à l'intitulé neutre
-dans votre agenda suffit). Si vos cycles varient beaucoup d'un mois à l'autre, il n'estime rien et
-ne porte aucun jugement : il vous montre la durée de vos derniers cycles, vous demande s'il manque
-une date ou s'il y en a une de trop, et prépare le mot le jour où vous le lui demandez.
+En bonus, si votre agent tourne sur votre ordinateur, il peut noter vos dates, estimer celle de vos
+prochaines règles et vous dire à partir de quel jour relancer le skill (un rappel à l'intitulé neutre
+dans votre agenda suffit) : il ne tourne pas en arrière-plan. Si vos cycles varient beaucoup d'un
+mois à l'autre, il n'estime rien et ne porte aucun jugement : il vous montre la durée de vos derniers
+cycles, vous demande s'il manque une date ou s'il y en a une de trop, et prépare le mot le jour où
+vous le lui demandez.
 
-Le mot contient une petite liste à cocher, que vous composez à partir d'une liste de départ (la
-tisane, la bouillotte prête, « câlin ou paix royale : demande lequel »...), et, si vous le voulez,
-une rubrique **« mots interdits cette semaine »**, avec une touche d'humour. Votre agent vous en
-propose une courte liste, de « T'as tes règles ou quoi ? » à « Tu as l'air fatiguée. » : vous gardez,
-vous changez ou vous supprimez chaque ligne, et la rubrique disparaît si vous n'en voulez pas. Ces
-listes de départ s'appuient sur des études, des témoignages de femmes et des articles de conseil,
+Le mot contient une petite liste à cocher (la tisane, la bouillotte prête, « câlin ou paix royale :
+demande lequel »...) et une rubrique **« mots interdits cette semaine »**, avec une touche d'humour,
+de « T'as tes règles ou quoi ? » à « T'as une petite mine. » Chaque ligne se retire dans le
+brouillon, ou en le demandant à votre agent, et la rubrique disparaît si vous n'en voulez pas. Ces listes de départ
+s'appuient sur des études, des témoignages de femmes et des articles de conseil,
 dont certains publiés par des marques, sur ce qui aide et ce qui blesse avant et pendant les règles :
 les sources, avec leur nature, sont dans `references/sources.md`.
 
@@ -26,8 +30,7 @@ Quatre ambiances au choix, avec leur aperçu dans `assets/apercus/` : **douceur*
 formes arrondies, ton câlin), **complice** (chaleureux et drôle), **franc** (net et bienveillant) et
 **cash** (sobre, contrasté, direct et drôle). Chaque ambiance a quelques phrases toutes prêtes (une
 ouverture, une phrase sous les mots interdits, un remerciement et, pour douceur et complice, une
-formule avant la signature) : votre agent vous les montre, et vous les gardez, les changez ou les
-retirez.
+formule avant la signature) : vous les gardez, les changez ou les retirez.
 
 ## Avec votre agent
 
@@ -43,8 +46,11 @@ peuvent lancer des commandes :
 | OpenClaw | `~/.agents/skills/` | `$ca-arrive` |
 | Un autre agent | consultez la documentation de votre agent | « Utilise le skill ca-arrive » |
 
-Une version de travail (1.1) a été testée en conditions réelles sous Codex le 25/09/2026 ; la 1.2 en
-corrige les défauts et ajoute des réglages qui n'ont pas encore été testés dans un agent. Pour les
+Une version de travail (1.1) a été testée en conditions réelles sous Codex le 25/09/2026, et la 1.2
+dans l'app Claude le même jour ; la 1.4 en tire une conversation plus courte et le brouillon mis en
+page qui s'ouvre sur l'ordinateur. Essayée sur un vrai Mac le 26/09/2026, elle ouvrait bien le
+brouillon dans Mail, mais seulement par la voie de secours quand Safari était fermé : la 1.5 lance
+Safari elle-même. Pas encore testé sous Windows. Pour les
 autres agents, le skill suit leur documentation officielle. Le détail, agent par agent, est dans
 `INSTALL.md`. Pour Claude Code, Codex et Hermes, lancez l'agent depuis le dossier privé du skill
 (`mkdir -p ~/.ca-arrive && cd ~/.ca-arrive && claude`, ou `codex`, ou `hermes`) : « tout effacer »
@@ -52,8 +58,8 @@ saura retrouver ces conversations.
 
 ## Au fil des mois
 
-Le jour où vos règles arrivent, lancez le skill avec « c'est arrivé aujourd'hui » (ou « hier ») : il
-note la date, et la prochaine estimation en tient compte. Pour estimer la date suivante, il lui faut
+Si vous avez choisi le suivi, le jour où vos règles arrivent, lancez le skill avec « c'est arrivé
+aujourd'hui » (ou « hier ») : il note la date, et la prochaine estimation en tient compte. Pour estimer la date suivante, il lui faut
 au moins trois dates, ou la durée habituelle de votre cycle que votre appli affiche. Avec « le mot maintenant », il prépare le mot
 tout de suite ; avec « réglages », vous changez l'ambiance, les listes ou le délai ; « pause » et
 « reprendre » font ce qu'ils disent.
@@ -71,14 +77,15 @@ tout de suite ; avec « réglages », vous changez l'ambiance, les listes ou le 
   rien et ne sert ni à la contraception ni à un projet de grossesse.
 - **Il ne suit que votre cycle**, jamais celui de quelqu'un d'autre.
 
-## Vos dates : trois façons, au choix
+## Vos dates, si vous choisissez le suivi : trois façons, au choix
 
-Ces dates sont des données de santé au sens du RGPD (article 9). Elles restent dans un fichier privé
+Sans suivi, le skill ne vous demande aucune date. Avec, ces dates sont des données de santé au sens
+du RGPD (article 9). Elles restent dans un fichier privé
 sur votre ordinateur, dans le dossier `~/.ca-arrive`, hors de tout dépôt Git et de tout dossier synchronisé.
-Exception possible : un agent qui travaille ailleurs que sur votre ordinateur, comme Cowork, dont les
-sessions tournent par défaut dans le cloud, ou un agent installé sur un serveur que vous joignez par
-une messagerie. Le fichier serait alors sur votre compte Claude ou sur ce serveur, et le skill vous
-le dit avant d'écrire la moindre date.
+Dans une session qui tourne dans le cloud, comme celles de Cowork par défaut, le skill ne note
+aucune date et ne propose pas de suivi. Avec un agent installé sur un serveur que vous joignez par
+une messagerie, le fichier serait sur ce serveur : le skill vous le dit avant d'écrire la moindre
+date.
 
 Sur un ordinateur ou un compte d'agent que quelqu'un d'autre utilise avec vous ou administre (un
 poste ou un abonnement fourni par votre employeur, par exemple), d'autres peuvent accéder à ces
@@ -94,20 +101,32 @@ Si vous parlez à votre agent par une messagerie (Telegram, WhatsApp...), la con
 par ses serveurs. Le détail par application est dans `references/exports.md`, et ce que chaque agent
 conserve, avec ses réglages, dans `references/confidentialite.md`.
 
-## Envoyer le mot : la méthode la plus simple
+## Envoyer le mot
 
-1. Votre agent vous indique où se trouve le mot mis en page (un fichier `.html`) et peut l'ouvrir
-   pour vous.
-2. Dans votre navigateur, sélectionnez tout (Cmd+A sur Mac, Ctrl+A sur PC), puis copiez.
-3. Collez dans un nouveau mail, tapez l'objet (« Ça arrive. Prépare-toi. », ou celui que vous avez
-   choisi), remplissez le champ « À » et envoyez.
+**Sur votre ordinateur**, votre agent ouvre un nouveau message déjà mis en page, avec l'objet (« Ça
+arrive. Prépare-toi. ») et sans destinataire : ajoutez l'adresse, relisez, envoyez.
+
+- Sur Mac, il passe par Safari (qu'il ouvre lui-même s'il était fermé), qui confie la page à Mail
+  (comme le bouton Partager, puis Mail, au format « Page web ») ; la première fois, macOS vous demande
+  sans doute d'autoriser votre agent à piloter Safari et Mail. Si ce chemin échoue, Mail ouvre un
+  message vide avec l'objet et le mot est dans le presse-papiers, à la place de ce que vous y aviez
+  copié : cliquez dans le corps du message puis Cmd+V. Si vous enregistrez le
+  brouillon dans Mail, il devrait vous attendre aussi dans Mail sur votre iPhone, selon votre compte.
+- Sous Windows, il ouvre un brouillon `.eml` : Outlook l'ouvre modifiable, prêt à envoyer ; d'autres
+  messageries l'ouvrent comme un message reçu, et votre agent vous donne alors la version texte.
+- Sous Linux, le même `.eml`, selon votre messagerie.
+
+Le skill ne remplit jamais le destinataire et n'envoie jamais rien.
+
+**Sur téléphone ou dans une session en ligne** (app Claude, ChatGPT, messagerie), le mail part en
+texte : votre agent vous donne un lien qui ouvre votre messagerie avec l'objet et le mot déjà
+écrits, et le texte en clair, à copier au besoin. Pour la version mise en page, lancez le skill sur
+votre ordinateur.
 
 L'annonce (« vers mardi », « sans doute demain ») est calculée pour le jour où le mot est préparé : si
 vous l'envoyez un autre jour, relancez d'abord le skill, il la met à jour.
 
-Pour un SMS ou un message WhatsApp, votre agent vous donne aussi une version texte, à copier telle
-quelle. Si la mise en page se perd dans votre messagerie, cette version texte fait très bien
-l'affaire.
+Pour un message WhatsApp, collez la version texte que votre agent vous donne, telle quelle.
 
 ## Arrêter, tout effacer
 

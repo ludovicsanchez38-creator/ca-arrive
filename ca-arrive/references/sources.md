@@ -58,6 +58,8 @@ davantage qu'un témoignage ou qu'un billet de blog. Rien de ce qui suit n'est u
   protections périodiques, sans date affichée ; les métadonnées de la page indiquent le 22/12/2022),
   https://www.bemewoman.com/blogs/be-me/dont-say-these-things-to-people-on-their-periods
 
-Les phrases anglaises et portugaises sont traduites ou adaptées, et les citations restent à leurs
-auteurs. Chaque ligne se garde, se change ou se supprime : c'est vous qui décidez de ce que votre mot
+Dans la liste proposée par défaut, deux phrases sont tournées sans accord, « Ça fait vraiment si
+mal que ça ? » et « T'as une petite mine. », car le skill ne suppose pas votre genre : leurs formes
+d'origine reviennent si vous parlez de vous au féminin. Les phrases anglaises et portugaises sont
+traduites ou adaptées, et les citations restent à leurs auteurs. Chaque ligne se garde, se change ou se supprime : c'est vous qui décidez de ce que votre mot
 dit.

@@ -66,6 +66,14 @@ Les commandes :
    qui s'afficheraient tels quels dans la version texte, puis vérifier qu'il ne reste ni `{{` ni
    `<!--` (hors du `<head>` du `.html`).
 
+## Le brouillon mis en page sans Python
+
+Une fois le `.html` rempli (ci-dessus), sur un Mac : l'ouvrir dans Safari, puis bouton Partager (ou
+Fichier > Partager), Mail : Mail ouvre un nouveau message avec la page, au format « Page web », qui
+garde la mise en page (aide d'Apple, lue le 25/09/2026 :
+https://support.apple.com/fr-fr/guide/safari/sfri40722/mac). C'est elle qui le fait, pas toi. Hors
+Mac, ou si ça ne marche pas, donne la version texte, à copier.
+
 ## Ajouter une date sans Python
 
 Écris-la en tête de « # Dates », au format AAAA-MM-JJ, jamais postérieure à celle que donne
