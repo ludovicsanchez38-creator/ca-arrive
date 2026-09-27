@@ -1,4 +1,4 @@
-# Ça arrive : le mot qui prévient, quelques jours avant
+# Ça arrive (bêta) : le mot qui prévient, quelques jours avant
 
 ## Ce qu'il fait
 

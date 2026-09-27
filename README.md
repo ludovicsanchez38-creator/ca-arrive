@@ -1,9 +1,13 @@
-# Ça arrive
+# Ça arrive (bêta)
 
 **Le mot qui prévient la personne qui partage votre vie, quelques jours avant vos règles.** Un skill
 gratuit pour les agents d'IA qui lisent le format ouvert [Agent Skills](https://agentskills.io) :
 Claude Code, Codex, Cowork, Hermes, OpenClaw. Un skill, c'est un mode d'emploi que votre agent suit
 quand vous l'appelez.
+
+> **Version bêta.** Le skill a été essayé en conditions réelles cette semaine, pas encore sous
+> Windows, et il va encore bouger au fil de vos retours. Un accroc, une idée ? Écrivez à
+> ludo@synoptia.fr.
 
 <p align="center"><img src="ca-arrive/assets/apercus/readme.png" width="400" alt="Aperçu du mot, ambiance complice : la liste « Ta mission, si tu l'acceptes » et la rubrique « Mots interdits cette semaine »"></p>
 
